@@ -17,6 +17,8 @@ services:
     - /var/run/docker.sock:/var/run/docker.sock:ro
     volumes_from:
     - nginx-proxy
+    environment:
+    - LETSENCRYPT_TEST=true
 
 networks:
   default:

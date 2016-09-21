@@ -24,19 +24,6 @@ echo "The domain of your website is $DOMAIN"
 echo -n "What is your email address for letsencrypt [ENTER]: "
 read LETSENCRYPT_EMAIL
 
-echo -n "What is your mailgun domain [ENTER]: "
-read MAILGUN_DOMAIN
-
-echo -n "What is your mailgun API key [ENTER]: "
-read -s MAILGUN_API_KEY
-echo ""
-
-echo -n "The email address the emails will be sent from [ENTER]: "
-read EMAIL_FROM
-
-echo -n "The email address the emails will be sent to [ENTER]: "
-read EMAIL_TO
-
 # Create the envfile
 read -d '' ENVFILE << EOF
 VIRTUAL_HOST=$DOMAIN
@@ -44,6 +31,32 @@ VIRTUAL_HOST=$DOMAIN
 LETSENCRYPT_HOST=$DOMAIN
 LETSENCRYPT_PORT=80
 LETSENCRYPT_EMAIL=$LETSENCRYPT_EMAIL
+EOF
+
+echo "$ENVFILE" > $ENVFILE_PATH
+
+
+echo -n "Do you want to use mailgun? [y/N]: "
+read SELECT_MAILGUN
+
+if [ "$SELECT_MAILGUN" == "y" ]
+then
+
+    echo -n "What is your mailgun domain [ENTER]: "
+    read MAILGUN_DOMAIN
+    
+    echo -n "What is your mailgun API key [ENTER]: "
+    read -s MAILGUN_API_KEY
+    echo ""
+    
+    echo -n "The email address the emails will be sent from [ENTER]: "
+    read EMAIL_FROM
+    
+    echo -n "The email address the emails will be sent to [ENTER]: "
+    read EMAIL_TO
+
+    # Create the envfile
+    read -d '' MAIL_ENVFILE << EOF
 
 MAILGUN_API_KEY=$MAILGUN_API_KEY
 MAILGUN_DOMAIN=$MAILGUN_DOMAIN
@@ -52,7 +65,9 @@ EMAIL_FROM=$EMAIL_FROM
 EMAIL_TO=$EMAIL_TO
 EOF
 
-echo "$ENVFILE" > $ENVFILE_PATH
+    echo "$MAIL_ENVFILE" >> $ENVFILE_PATH
+
+fi
 
 fi
 

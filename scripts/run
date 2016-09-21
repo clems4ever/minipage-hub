@@ -1,7 +1,12 @@
 #!/usr/bin/with-contenv sh
 
-# cd into our directory
-cd /src/mail-agent
+if [ "$EMAIL_TO" != "" ]
+then
 
-# start our node.js application
-node app.js;
+    # cd into our directory
+    cd /src/mail-agent
+    
+    # start our node.js application
+    node app.js;
+
+fi
