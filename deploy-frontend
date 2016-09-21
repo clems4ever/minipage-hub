@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+BASE_DIRECTORY=~/.easypage
+
+mkdir -p $BASE_DIRECTORY
+mkdir -p $BASE_DIRECTORY/certs
+
+
+docker-compose up -d

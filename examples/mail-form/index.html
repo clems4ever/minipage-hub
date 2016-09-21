@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>Website 1</title>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <p>This is an example website with a mail form.</p>
+    <form>
+        <input type="text" placeholder="Subject" id="subject"/><br/><br/>
+        <textarea placeholder="Message" cols="80" rows="20" id="message"></textarea><br/><br/>
+        <input type="button" value="Send" id="send-button"/>
+    </form>
+
+
+
+
+    <script src="/easypage.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#send-button').on('click', function() {
+            var subject = $('#subject').val();
+            var message = $('#message').val();
+    
+            easypage.send(subject, message, function(err, res) {
+               if(err) {
+                   console.error(err);
+                   return;
+               }
+               console.log(res);
+            });
+        });
+    });
+    </script>
+</body>
+</html>

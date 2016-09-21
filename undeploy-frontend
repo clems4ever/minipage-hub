@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+BASE_DIRECTORY=~/.easypage
+
+rm -rf $BASE_DIRECTORY
+
+
+docker-compose down

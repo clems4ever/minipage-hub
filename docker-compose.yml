@@ -6,22 +6,17 @@ services:
     - 80:80
     - 443:443
     volumes:
+    - ~/.easypage/certs:/etc/nginx/certs:rw
     - /etc/nginx/vhost.d
-#    - /usr/share/nginx/html
+    - /usr/share/nginx/html
     - /var/run/docker.sock:/tmp/docker.sock:ro
-    volumes_from:
-    - letsencrypt-agent
 
   letsencrypt-agent:
     image: jrcs/letsencrypt-nginx-proxy-companion
     volumes:
-    - /etc/nginx/certs
     - /var/run/docker.sock:/var/run/docker.sock:ro
-
-#  mail-proxy:
-#    image: mail
-#    expose:
-#    - 80
+    volumes_from:
+    - nginx-proxy
 
 networks:
   default:

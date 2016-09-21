@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+echo "Usage: remove-website <DOMAIN>"
+exit 1
+fi
+
+DOMAIN=$1
+
+echo "Starting removal of $DOMAIN."
+
+echo "Stopping docker container..."
+docker stop $DOMAIN > /dev/null
+
+echo "Removing docker container..."
+docker rm $DOMAIN > /dev/null
+
+echo "Removal of $DOMAIN is done!"
