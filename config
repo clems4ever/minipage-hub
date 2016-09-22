@@ -1,0 +1,11 @@
+#!/bin/bash
+
+NETWORK_BRIDGE=minipage-network
+
+CONFIG_DIR=~/.minipage
+CERTS_DIR=$CONFIG_DIR/certs
+
+PROXY_CONTAINER_NAME=minipage-proxy
+CERTS_AGENT_CONTAINER_NAME=minipage-certs-agent
+
+DOCKER_IMAGE_NAME=clems4ever/minipage

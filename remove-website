@@ -1,18 +1,25 @@
 #!/bin/bash
 
+
+source config
+
 if [ "$#" -ne 1 ]; then
 echo "Usage: remove-website <DOMAIN>"
 exit 1
 fi
 
 DOMAIN=$1
+CONTAINER_NAME=minipage-$DOMAIN
+
+echo "=== Website removal ==="
+echo ""
 
 echo "Starting removal of $DOMAIN."
 
 echo "Stopping docker container..."
-docker stop $DOMAIN > /dev/null
+docker stop $CONTAINER_NAME > /dev/null
 
 echo "Removing docker container..."
-docker rm $DOMAIN > /dev/null
+docker rm $CONTAINER_NAME > /dev/null
 
 echo "Removal of $DOMAIN is done!"

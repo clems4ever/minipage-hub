@@ -1,14 +1,25 @@
 #!/bin/bash
 
 
-CONFIG_DIR=~/.minipage
+source config
 
+echo "=== Minipage hub undeploy ==="
+echo ""
+
+echo "Remove configuration directory $CONFIG_DIR"
 rm -rf $CONFIG_DIR
 
-docker stop minipage-proxy
-docker rm minipage-proxy
+echo "Removing proxy container..."
+docker stop $PROXY_CONTAINER_NAME
+docker rm $PROXY_CONTAINER_NAME
 
-docker stop minipage-certs-agent
-docker rm minipage-certs-agent
+echo "Removing certs agent container..."
+docker stop $CERTS_AGENT_CONTAINER_NAME
+docker rm $CERTS_AGENT_CONTAINER_NAME
 
-docker network rm minipage-network
+
+echo "Removing network bridge..."
+docker network rm $NETWORK_BRIDGE
+
+
+echo "Undeployment done."

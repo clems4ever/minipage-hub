@@ -1,30 +1,37 @@
 #!/bin/bash
 
+source config
 
-CONFIG_DIR=~/.minipage
-CERTS_DIR=$CONFIG_DIR/certs
-NETWORK_BRIDGE=minipage-network
 
+echo "=== Deploy minipage hub ==="
+echo ""
+
+echo "Creating configuration directory $CONFIG_DIR"
 mkdir -p $CONFIG_DIR
 mkdir -p $CERTS_DIR
 
-docker network create minipage-network
+echo "Creating network bridge..."
+docker network create minipage-network > /dev/null
 
 echo "Starting proxy..."
 docker run -d \
-    --name minipage-proxy \
+    --name $PROXY_CONTAINER_NAME \
     --net $NETWORK_BRIDGE \
     -p 80:80 -p 443:443 \
     -v $CERTS_DIR:/etc/nginx/certs:rw \
+    -v /usr/share/nginx/html \
     -v /etc/nginx/vhost.d \
     -v /var/run/docker.sock:/tmp/docker.sock:ro \
-    jwilder/nginx-proxy
+    jwilder/nginx-proxy > /dev/null
 
 
 echo "Starting certs agent..."
 docker run -d \
-    --name minipage-certs-agent \
+    --name $CERTS_AGENT_CONTAINER_NAME \
     --net $NETWORK_BRIDGE \
     -v /var/run/docker.sock:/var/run/docker.sock:ro \
-    --volumes-from minipage-proxy \
-    jrcs/letsencrypt-nginx-proxy-companion
+    --volumes-from $PROXY_CONTAINER_NAME \
+    jrcs/letsencrypt-nginx-proxy-companion > /dev/null
+
+
+echo "Deployment done."

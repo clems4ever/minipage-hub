@@ -1,7 +1,6 @@
 #!/bin/bash
 
-BASE_DIR=~/.minipage
-NETWORK_BRIDGE=minipage-network
+source config
 
 
 if [ "$#" -ne 2 ]; then
@@ -12,11 +11,13 @@ fi
 DOMAIN=$1
 WEBSITE_DIR=$2
 
-WEBSITE_CONFIG_DIR=$BASE_DIR/$DOMAIN
-ENVFILE_PATH=$BASE_DIR/$DOMAIN/envfile
+WEBSITE_CONFIG_DIR=$CONFIG_DIR/$DOMAIN
+ENVFILE_PATH=$WEBSITE_CONFIG_DIR/envfile
 
-echo "The domain of your website is $DOMAIN"
-echo "The webserver will serve $WEBSITE_DIR"
+echo "=== Website deployment ==="
+echo ""
+
+echo "Your website will be hosted at $DOMAIN and will serve $WEBSITE_DIR."
 
 if [ ! -d $WEBSITE_CONFIG_DIR ]
 then
@@ -74,7 +75,9 @@ fi
 fi
 
 docker run -d --env-file $ENVFILE_PATH \
-       --name $DOMAIN --expose 80 \
+       --name minipage-$DOMAIN --expose 80 \
        -v $WEBSITE_DIR:/usr/html \
        --net $NETWORK_BRIDGE \
-       clems4ever/minipage
+       $DOCKER_IMAGE_NAME > /dev/null
+
+echo "Deployment done!"
