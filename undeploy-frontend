@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-BASE_DIRECTORY=~/.easypage
+BASE_DIRECTORY=~/.minipage
 
 rm -rf $BASE_DIRECTORY
 

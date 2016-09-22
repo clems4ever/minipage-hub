@@ -6,7 +6,7 @@ services:
     - 80:80
     - 443:443
     volumes:
-    - ~/.easypage/certs:/etc/nginx/certs:rw
+    - ~/.minipage/certs:/etc/nginx/certs:rw
     - /etc/nginx/vhost.d
     - /usr/share/nginx/html
     - /var/run/docker.sock:/tmp/docker.sock:ro
@@ -17,10 +17,8 @@ services:
     - /var/run/docker.sock:/var/run/docker.sock:ro
     volumes_from:
     - nginx-proxy
-    environment:
-    - LETSENCRYPT_TEST=true
 
 networks:
   default:
     external:
-      name: frontend-network
+      name: minipage-network

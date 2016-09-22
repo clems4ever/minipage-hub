@@ -21,6 +21,6 @@ function sendMail(subject, message, callback) {
    }, callback);
 }
 
-var easypage = {
+var minipage = {
     send: sendMail
 }

@@ -15,14 +15,14 @@
 
 
 
-    <script src="/easypage.js"></script>
+    <script src="/minipage.js"></script>
     <script>
     $(document).ready(function() {
         $('#send-button').on('click', function() {
             var subject = $('#subject').val();
             var message = $('#message').val();
     
-            easypage.send(subject, message, function(err, res) {
+            minipage.send(subject, message, function(err, res) {
                if(err) {
                    console.error(err);
                    return;

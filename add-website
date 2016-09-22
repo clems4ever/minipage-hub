@@ -1,6 +1,7 @@
 #!/bin/bash
 
-BASE_DIR=~/.easypage
+BASE_DIR=~/.minipage
+NETWORK_BRIDGE=minipage-network
 
 
 if [ "$#" -ne 2 ]; then
@@ -14,12 +15,13 @@ WEBSITE_DIR=$2
 WEBSITE_CONFIG_DIR=$BASE_DIR/$DOMAIN
 ENVFILE_PATH=$BASE_DIR/$DOMAIN/envfile
 
+echo "The domain of your website is $DOMAIN"
+echo "The webserver will serve $WEBSITE_DIR"
+
 if [ ! -d $WEBSITE_CONFIG_DIR ]
 then
 
 mkdir $WEBSITE_CONFIG_DIR
-
-echo "The domain of your website is $DOMAIN"
 
 echo -n "What is your email address for letsencrypt [ENTER]: "
 read LETSENCRYPT_EMAIL
@@ -74,5 +76,5 @@ fi
 docker run -d --env-file $ENVFILE_PATH \
        --name $DOMAIN --expose 80 \
        -v $WEBSITE_DIR:/usr/html \
-       --net frontend-network \
-       clems4ever/easypage
+       --net $NETWORK_BRIDGE \
+       clems4ever/minipage

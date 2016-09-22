@@ -13,7 +13,7 @@ RUN cd /src/mail-agent && npm install
 ADD scripts/run /etc/services.d/mail-agent/run
 
 # Easypage internal files
-ADD easypage /easypage
+ADD minipage /minipage
 
 # Nginx configuration
 ADD conf/default.conf /etc/nginx/conf.d/default.conf

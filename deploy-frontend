@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-BASE_DIRECTORY=~/.easypage
+BASE_DIRECTORY=~/.minipage
 
 mkdir -p $BASE_DIRECTORY
 mkdir -p $BASE_DIRECTORY/certs
