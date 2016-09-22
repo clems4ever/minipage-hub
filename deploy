@@ -1,0 +1,30 @@
+#!/bin/bash
+
+
+CONFIG_DIR=~/.minipage
+CERTS_DIR=$CONFIG_DIR/certs
+NETWORK_BRIDGE=minipage-network
+
+mkdir -p $CONFIG_DIR
+mkdir -p $CERTS_DIR
+
+docker network create minipage-network
+
+echo "Starting proxy..."
+docker run -d \
+    --name minipage-proxy \
+    --net $NETWORK_BRIDGE \
+    -p 80:80 -p 443:443 \
+    -v $CERTS_DIR:/etc/nginx/certs:rw \
+    -v /etc/nginx/vhost.d \
+    -v /var/run/docker.sock:/tmp/docker.sock:ro \
+    jwilder/nginx-proxy
+
+
+echo "Starting certs agent..."
+docker run -d \
+    --name minipage-certs-agent \
+    --net $NETWORK_BRIDGE \
+    -v /var/run/docker.sock:/var/run/docker.sock:ro \
+    --volumes-from minipage-proxy \
+    jrcs/letsencrypt-nginx-proxy-companion

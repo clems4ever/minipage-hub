@@ -1,9 +1,0 @@
-#!/bin/bash
-
-
-BASE_DIRECTORY=~/.minipage
-
-rm -rf $BASE_DIRECTORY
-
-
-docker-compose down

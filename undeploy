@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+CONFIG_DIR=~/.minipage
+
+rm -rf $CONFIG_DIR
+
+docker stop minipage-proxy
+docker rm minipage-proxy
+
+docker stop minipage-certs-agent
+docker rm minipage-certs-agent
+
+docker network rm minipage-network
