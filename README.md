@@ -4,8 +4,6 @@ MiniPage Hub is a set of scripts that allows you to deploy easily as many one pa
 
 ## How to
 
----------------------
-
 ### Deploy MiniPage Hub
 
 If you it is the first time you use MiniPage Hub, you must deploy the network layer with the following command. Otherwise, you can skip this step and go to "Deploy your websites".
@@ -29,7 +27,6 @@ Removing a website is as simple as:
 When it is done, your website should be accessible at https://www.example.com.
 
 ## Send emails from your website
--------------------------
 
 ### Use mailgun to send emails
 
@@ -50,7 +47,6 @@ This file is served by the webserver and contains a library that allows you to s
     minipage.send(subject, message, function(err, res) { })
 
 ## Change the configuration of a website
------------------
 
 If the configuration has already been done for a website and you want to change it, first remove the website with
 
@@ -63,12 +59,10 @@ The configuration of any website is located in ~/.minipage/www.example.com/envfi
 If the directory has been removed, configuration will be required. Otherwise, the new parameters will be taken into account directly without any configuration.
 
 ## Contributing to MiniPage Hub
------------------
 
 Follow [contributing](CONTRIBUTING.md) file.
 
 ## License
-----------------
 
 MiniPage Hub is **licensed** under the **[MIT License]**. The terms of the license are as follows:
 
