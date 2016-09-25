@@ -4,32 +4,36 @@ MiniPage Hub is a set of scripts that allows you to deploy easily as many one pa
 
 ## How to
 
-### Deploy the Hub layer
+---------------------
 
-To deploy your websites you must first create the minipage hub layer (proxy and certs agent) with the following commands:
+### Deploy MiniPage Hub
 
-    ./deploy
+If you it is the first time you use MiniPage Hub, you must deploy the network layer with the following command. Otherwise, you can skip this step and go to "Deploy your websites".
     
-It creates a network bridge that links the proxy with minipage containers. 
+    ./deploy
 
 ### Deploy your websites
-
-You can add as many websites as you wish with the following command:
+    
+You can add as many websites as you wish with MiniPage Hub. For example, if **www.example.com** is your domain name and **/var/www/mywebsite** is the root of your website, add it with the following command and that is about it!
 
     ./add-website www.example.com /var/www/mywebsite
     
-Where **www.example.com** is your domain name and **/var/www/mywebsite** is the root of your website.
 The deployment requires a bit of configuration. You just have to follow the instructions. *If you don't need to send emails you can disable mailgun.* 
 
-*If the configuration has already been done, remove the website, remove the directory ~/.minipage/yourdomain.com/ and add it again.*
+### Remove your website
+
+Removing a website is as simple as:
+
+    ./remove-website www.example.com
 
 When it is done, your website should be accessible at https://www.example.com.
 
-### Use mailgun to send emails from minipage websites
+## Send emails from your website
+-------------------------
 
-If you want to receive emails sent by users on your website, create a [mailgun](https://mailgun.com) account and get an API key that is required during configuration of your website.
+### Use mailgun to send emails
 
-You can try it quickly with the embedded example
+If you want to receive emails sent by users on a form from your website, create a [mailgun](https://mailgun.com) account and get an API key that is required during configuration of your website. You can then try it quickly with the embedded example
   
     ./add-website www.example.com $(pwd)/examples/mail-form/
     
@@ -45,17 +49,26 @@ This file is served by the webserver and contains a library that allows you to s
 
     minipage.send(subject, message, function(err, res) { })
 
-### Remove your website
+## Change the configuration of a website
+-----------------
 
-Removing a website is as simple as:
+If the configuration has already been done for a website and you want to change it, first remove the website with
 
     ./remove-website www.example.com
+    
+The configuration of any website is located in ~/.minipage/www.example.com/envfile. You can either edit the file manually or remove the directory and add the website again with 
+
+    ./add-website www.example.com /var/www/mywebsite
+    
+If the directory has been removed, configuration will be required. Otherwise, the new parameters will be taken into account directly without any configuration.
 
 ## Contributing to MiniPage Hub
+-----------------
 
 Follow [contributing](CONTRIBUTING.md) file.
 
 ## License
+----------------
 
 MiniPage Hub is **licensed** under the **[MIT License]**. The terms of the license are as follows:
 
