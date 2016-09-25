@@ -4,13 +4,13 @@ MiniPage Hub is a set of scripts that allows you to deploy easily as many one pa
 
 ## How to
 
-### Deploy MiniPage Hub
+### Deploy MiniPage Hub once
 
 If you it is the first time you use MiniPage Hub, you must deploy the network layer with the following command. Otherwise, you can skip this step and go to "Deploy your websites".
     
     ./deploy
 
-### Deploy your websites
+### Add a website
     
 You can add as many websites as you wish with MiniPage Hub. For example, if **www.example.com** is your domain name and **/var/www/mywebsite** is the root of your website, add it with the following command and that is about it!
 
@@ -18,7 +18,7 @@ You can add as many websites as you wish with MiniPage Hub. For example, if **ww
     
 The deployment requires a bit of configuration. You just have to follow the instructions. *If you don't need to send emails you can disable mailgun.* 
 
-### Remove your website
+### Remove a website
 
 Removing a website is as simple as:
 
