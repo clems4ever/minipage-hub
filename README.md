@@ -16,15 +16,15 @@ You can add as many websites as you wish with MiniPage Hub. For example, if **ww
 
     ./add-website www.example.com /var/www/mywebsite
     
-The deployment requires a bit of configuration. You just have to follow the instructions. *If you don't need to send emails you can disable mailgun.* 
+The deployment requires a bit of configuration. You just have to follow the instructions. *If you don't need to send emails you can disable mailgun.*
+
+When it is done, your website should be accessible at https://www.example.com.
 
 ### Remove a website
 
 Removing a website is as simple as:
 
     ./remove-website www.example.com
-
-When it is done, your website should be accessible at https://www.example.com.
 
 ## Send emails from your website
 
