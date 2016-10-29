@@ -7,7 +7,7 @@ echo "=== Minipage hub undeploy ==="
 echo ""
 
 echo "Remove configuration directory $CONFIG_DIR"
-rm -rf $CONFIG_DIR
+#rm -rf $CONFIG_DIR
 
 echo "Removing proxy container..."
 docker stop $PROXY_CONTAINER_NAME

@@ -75,7 +75,7 @@ fi
 fi
 
 docker run -d --env-file $ENVFILE_PATH \
-       --name minipage-$DOMAIN --expose 80 \
+       --name minipage-web-$DOMAIN --expose 80 \
        -v $WEBSITE_DIR:/usr/html \
        --net $NETWORK_BRIDGE \
        $DOCKER_IMAGE_NAME > /dev/null

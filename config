@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NETWORK_BRIDGE=minipage-network
+NETWORK_BRIDGE=frontend-network
 
 CONFIG_DIR=~/.minipage
 CERTS_DIR=$CONFIG_DIR/certs

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker ps -a | grep "minipage-" | awk '{print $1}' | xargs docker restart

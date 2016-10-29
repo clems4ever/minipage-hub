@@ -9,7 +9,7 @@ exit 1
 fi
 
 DOMAIN=$1
-CONTAINER_NAME=minipage-$DOMAIN
+CONTAINER_NAME=minipage-web-$DOMAIN
 
 echo "=== Website removal ==="
 echo ""
